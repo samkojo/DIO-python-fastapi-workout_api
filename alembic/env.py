@@ -1,5 +1,6 @@
 import asyncio
 from logging.config import fileConfig
+from os import environ
 
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
@@ -40,8 +41,12 @@ def do_run_migrations(connection: Connection) -> None:
 
 
 async def run_async_migrations() -> None:
+    database_url = f'postgresql+asyncpg://{environ['POSTGRES_USER']}:{environ['POSTGRES_PASSWORD']}@localhost:{environ['POSTGRES_PORT']}/{environ['POSTGRES_DB']}'
+    configs = config.get_section(config.config_ini_section, {})
+    configs['sqlalchemy.url'] = database_url
+
     connectable = async_engine_from_config(
-        config.get_section(config.config_ini_section, {}),
+        configs,
         prefix="sqlalchemy.",
         poolclass=pool.NullPool,
     )
