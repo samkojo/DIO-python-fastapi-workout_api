@@ -4,7 +4,7 @@ from uuid import uuid4
 from fastapi import APIRouter, Body, HTTPException, Query, status
 from pydantic import UUID4
 from sqlalchemy.exc import IntegrityError
-from fastapi_pagination import Page
+from fastapi_pagination import LimitOffsetPage
 from fastapi_pagination.ext.sqlalchemy import paginate
 
 from workout_api.atleta.schemas import AtletaIn, AtletaOut, AtletaUpdate
@@ -72,13 +72,13 @@ async def post(
     '/', 
     summary='Consultar todos os Atletas',
     status_code=status.HTTP_200_OK,
-    response_model=Page[AtletaOut],
+    response_model=LimitOffsetPage[AtletaOut],
 )
 async def query(
     db_session: DatabaseDependency,
     nome: Annotated[Optional[str], Query(description='Nome do atleta', example='Joao', max_length=50)] = None,
     cpf: Annotated[Optional[str], Query(description='CPF do atleta', example='12345678900', max_length=11)] = None,
-) -> Page[AtletaOut]:
+) -> LimitOffsetPage[AtletaOut]:
     
     query = select(AtletaModel)
     if nome:
