@@ -1,39 +1,62 @@
-# FastAPI
-### Quem é o FastAPi?
-Framework FastAPI, alta performance, fácil de aprender, fácil de codar, pronto para produção.
-FastAPI é um moderno e rápido (alta performance) framework web para construção de APIs com Python 3.6 ou superior, baseado nos type hints padrões do Python.
-
-### Async
-Código assíncrono apenas significa que a linguagem tem um jeito de dizer para o computador / programa que em certo ponto, ele terá que esperar por algo para finalizar em outro lugar
-
 # Projeto
+
 ## WorkoutAPI
 
-Esta é uma API de competição de crossfit chamada WorkoutAPI (isso mesmo rs, eu acabei unificando duas coisas que gosto: codar e treinar). É uma API pequena, devido a ser um projeto mais hands-on e simplificado nós desenvolveremos uma API de poucas tabelas, mas com o necessário para você aprender como utilizar o FastAPI.
+Esta é uma API de competição de crossfit chamada WorkoutAPI. É uma API pequena, devido a ser um projeto mais hands-on e simplificado nós desenvolveremos uma API de poucas tabelas, mas com o necessário para você aprender como utilizar o FastAPI.
 
 ## Modelagem de entidade e relacionamento - MER
+
 ![MER](/mer.jpg "Modelagem de entidade e relacionamento")
 
 ## Stack da API
 
 A API foi desenvolvida utilizando o `fastapi` (async), junto das seguintes libs: `alembic`, `SQLAlchemy`, `pydantic`. Para salvar os dados está sendo utilizando o `postgres`, por meio do `docker`.
 
+## Requisitos
+
+- asdf
+- Python (asdf)
+- Poetry (asdf)
+- Docker
+
+## Funcionalidades (features)
+
+- Atletas
+  - [x] Consulta todas atletas
+    - [ ] Permitir filtrar via parametros nome e cpf
+    - [ ] Adicionar paginacao via parametros limit e offset
+  - [x] Cria atleta
+    - [ ] Retorno 303 caso campo unico ja exista com mesmo valor
+  - [x] Consulta atleta via ID
+  - [x] Alterar atleta via ID
+  - [x] Deletar atleta via ID
+- Categorias
+  - [x] Consulta todas categorias
+  - [x] Cria categoria
+    - [ ] Retorno 303 caso campo unico ja exista com mesmo valor
+  - [x] Consulta categoria via ID
+- Centros de treinamento
+  - [x] Consulta todos centros de treinamento
+  - [x] Cria centros de treinamento
+    - [ ] Retorno 303 caso campo unico ja exista com mesmo valor
+  - [x] Consulta centros de treinamento via ID
+
 ## Execução da API
 
-Para executar o projeto, utilizei a [pyenv](https://github.com/pyenv/pyenv), com a versão 3.11.4 do `python` para o ambiente virtual.
-
-Caso opte por usar pyenv, após instalar, execute:
+Instalar dependencias
 
 ```bash
-pyenv virtualenv 3.11.4 workoutapi
-pyenv activate workoutapi
-pip install -r requirements.txt
+make install
 ```
-Para subir o banco de dados, caso não tenha o [docker-compose](https://docs.docker.com/compose/install/linux/) instalado, faça a instalação e logo em seguida, execute:
+
+Sobe todos recursos necessarios e coloca API em funcionamento:
 
 ```bash
-make run-docker
+make run
 ```
+
+## Execuções individuais
+
 Para criar uma migration nova, execute:
 
 ```bash
@@ -46,38 +69,14 @@ Para criar o banco de dados, execute:
 make run-migrations
 ```
 
-## API
+## Referências
 
-Para subir a API, execute:
-```bash
-make run
-```
-e acesse: http://127.0.0.1:8000/docs
+FastAPI: <https://fastapi.tiangolo.com/>
 
-# Desafio Final
-    - adicionar query parameters nos endpoints
-        - atleta
-            - nome
-            - cpf
-    - customizar response de retorno de endpoints
-        - get all
-            - atleta
-                - nome
-                - centro_treinamento
-                - categoria
-    - Manipular exceção de integridade dos dados em cada módulo/tabela
-        - sqlalchemy.exc.IntegrityError e devolver a seguinte mensagem: “Já existe um atleta cadastrado com o cpf: x”
-        - status_code: 303
-    - Adicionar paginação utilizando a lib: fastapi-pagination
-        - limit e offset
-# Referências
+Pydantic: <https://docs.pydantic.dev/latest/>
 
-FastAPI: https://fastapi.tiangolo.com/
+SQLAlchemy: <https://docs.sqlalchemy.org/en/20/>
 
-Pydantic: https://docs.pydantic.dev/latest/
+Alembic: <https://alembic.sqlalchemy.org/en/latest/>
 
-SQLAlchemy: https://docs.sqlalchemy.org/en/20/
-
-Alembic: https://alembic.sqlalchemy.org/en/latest/
-
-Fastapi-pagination: https://uriyyo-fastapi-pagination.netlify.app/
+Fastapi-pagination: <https://uriyyo-fastapi-pagination.netlify.app/>
