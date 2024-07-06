@@ -26,19 +26,19 @@ A API foi desenvolvida utilizando o `fastapi` (async), junto das seguintes libs:
     - [ ] Permitir filtrar via parametros nome e cpf
     - [ ] Adicionar paginacao via parametros limit e offset
   - [x] Cria atleta
-    - [ ] Retorno 303 caso campo unico ja exista com mesmo valor
+    - [x] Retorno 303 caso campo unico ja exista com mesmo valor
   - [x] Consulta atleta via ID
   - [x] Alterar atleta via ID
   - [x] Deletar atleta via ID
 - Categorias
   - [x] Consulta todas categorias
   - [x] Cria categoria
-    - [ ] Retorno 303 caso campo unico ja exista com mesmo valor
+    - [x] Retorno 303 caso campo unico ja exista com mesmo valor
   - [x] Consulta categoria via ID
 - Centros de treinamento
   - [x] Consulta todos centros de treinamento
   - [x] Cria centros de treinamento
-    - [ ] Retorno 303 caso campo unico ja exista com mesmo valor
+    - [x] Retorno 303 caso campo unico ja exista com mesmo valor
   - [x] Consulta centros de treinamento via ID
 
 ## Execução da API
