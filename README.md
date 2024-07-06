@@ -23,7 +23,7 @@ A API foi desenvolvida utilizando o `fastapi` (async), junto das seguintes libs:
 
 - Atletas
   - [x] Consulta todas atletas
-    - [ ] Permitir filtrar via parametros nome e cpf
+    - [x] Permitir filtrar via parametros nome e/ou cpf
     - [ ] Adicionar paginacao via parametros limit e offset
   - [x] Cria atleta
     - [x] Retorno 303 caso campo unico ja exista com mesmo valor
